@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# Generic script that processes the openscad file to an stl and
+# then performs the slicing to the db file that is used
+# in modeling
+#
+# As we are really only looking at the Y projection for elegant,
+# Accept an offset file for it.
+#
+
+
+
+/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD $1.scad --export-format binstl -o $1.stl
+rm $1*.db
+rm $1*.npy
+./prepareMeshCut.py $1.stl
+./prepare_tris.py --xn 1 --yn 1 --zn 1 $1.stl
+./cutMesh.py --axis=X $1.stl
+./cutMesh.py --offsetfile $2 --axis=Y $1.stl
+./cutMesh.py --axis=Z $1.stl
+

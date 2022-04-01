@@ -1,0 +1,6 @@
+python getPolygons.py --sdds -- dlma_20220131.stl_intersections.db -11 11 > dlma_polygons.in
+python getPolygons.py --sdds -- dlmb_20220110.stl_intersections.db -11 11 > dlmb_polygons.in
+python getPolygons.py --sdds -- fodo_20220123.stl_intersections.db -11 11 > fodo_polygons.in
+python getPolygons.py --sdds -- qmqa-20220114.stl_intersections.db -11 11 > qmqa_polygons.in
+python getPolygons.py --sdds -- qmqb-20220224.stl_intersections.db -11 11 > qmqb_polygons.in
+afplay /System/Library/Sounds/Funk.aiff

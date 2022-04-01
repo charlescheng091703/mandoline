@@ -1,0 +1,41 @@
+#
+# Round 1:  We need to generate a model around which we will optimize
+#           the OpenScad Model.  Lets generate the fit model at a
+#           10 mm resolution.   Note:  From Josh:  The original models
+#           are in inches.
+#
+
+./prepareMeshCut.py --rotfile=dlma.rot --s=25.4 --dx=-110 dlma-vac.stl
+./prepareMeshCut.py --rotfile=dlma.rot --s=25.4 --dx=-745 DLMB-vac.stl
+./prepareMeshCut.py --rotfile=dlma.rot --s=25.4 --dx=-338 QMQA-vac.stl
+./prepareMeshCut.py --rotfile=dlma.rot --s=25.4 --dx=-634 QMQB-vac.stl
+./prepareMeshCut.py --rotfile=dlma.rot --s=25.4 --dx=-450 FODO-vac.stl
+
+#
+
+./prepare_tris.py --xn 1.0 --yn 1.0 --zn 1.0 dlma-vac.stl
+./prepare_tris.py --xn 1.0 --yn 1.0 --zn 1.0 DLMB-vac.stl
+./prepare_tris.py --xn 1.0 --yn 1.0 --zn 1.0 QMQA-vac.stl
+./prepare_tris.py --xn 1.0 --yn 1.0 --zn 1.0 QMQB-vac.stl
+./prepare_tris.py --xn 1.0 --yn 1.0 --zn 1.0 FODO-vac.stl
+
+
+# We need to pull the limits out of the file.
+# for now, lets just process
+./cutMesh.py --axis=X dlma-vac.stl
+./cutMesh.py --axis=Y dlma-vac.stl
+./cutMesh.py --axis=Z dlma-vac.stl
+./cutMesh.py --axis=X DLMB-vac.stl
+./cutMesh.py --axis=Y DLMB-vac.stl
+./cutMesh.py --axis=Z DLMB-vac.stl
+./cutMesh.py --axis=X FODO-vac.stl
+./cutMesh.py --axis=Y FODO-vac.stl
+./cutMesh.py --axis=Z FODO-vac.stl
+./cutMesh.py --axis=X QMQA-vac.stl
+./cutMesh.py --axis=Y QMQA-vac.stl
+./cutMesh.py --axis=Z QMQA-vac.stl
+./cutMesh.py --axis=X QMQB-vac.stl
+./cutMesh.py --axis=Y QMQB-vac.stl
+./cutMesh.py --axis=Z QMQB-vac.stl
+
+

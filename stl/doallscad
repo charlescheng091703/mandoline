@@ -1,0 +1,4 @@
+./scad2db dlma_20220131 none.csv
+./scad2db dlmb_20220110 none.csv
+./scad2db fodo_20220123 none.csv
+./scad2db qmqa-20220114 none.csv

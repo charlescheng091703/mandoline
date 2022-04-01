@@ -1,0 +1,44 @@
+#!/bin/bash
+#
+# Generic script that processes the openscad file to an stl and
+# then performs the slicing to the db file that is used
+# in modeling
+#
+# As we are really only looking at the Y projection for elegant,
+# Accept an offset file for it.
+#
+
+/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD dlma_20220131.scad --export-format binstl -o dlma_20220131.stl
+rm dlma_20220131*.db
+rm dlma_20220131*.npy
+./prepareMeshCut.py dlma_20220131.stl
+./prepare_tris.py --xn 1 --yn 1 --zn 1 dlma_20220131.stl
+./cutMesh.py --offsetfile dlma.csv --axis=Y dlma_20220131.stl
+
+/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD dlmb_20220110.scad --export-format binstl -o dlmb_20220110.stl
+rm dlmb_20220110*.db
+rm dlmb_20220110*.npy
+./prepareMeshCut.py dlmb_20220110.stl
+./prepare_tris.py --xn 1 --yn 1 --zn 1 dlmb_20220110.stl
+./cutMesh.py --offsetfile dlmb.csv --axis=Y dlmb_20220110.stl
+
+/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD fodo_20220123.scad --export-format binstl -o fodo_20220123.stl
+rm fodo_20220123*.db
+rm fodo_20220123*.np
+./prepareMeshCut.py fodo_20220123.stl
+./prepare_tris.py --xn 1 --yn 1 --zn 1 fodo_20220123.stl
+./cutMesh.py --offsetfile fodo.csv --axis=Y fodo_20220123.stl
+
+/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD qmqa-20220114.scad --export-format binstl -o qmqa-20220114.stl
+rm qmqa-20220114*.db
+rm qmqa-20220114*.npy
+./prepareMeshCut.py qmqa-20220114.stl
+./prepare_tris.py --xn 1 --yn 1 --zn 1 qmqa-20220114.stl
+./cutMesh.py --offsetfile qmqa.csv --axis=Y qmqa-20220114.stl
+
+/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD qmqb-20220224.scad --export-format binstl -o qmqb-20220224.stl
+rm qmqb-20220224*.db
+rm qmqb-20220224*.npy
+./prepareMeshCut.py qmqb-20220224.stl
+./prepare_tris.py --xn 1 --yn 1 --zn 1 qmqb-20220224.stl
+./cutMesh.py --offsetfile qmqb.csv --axis=Y qmqb-20220224.stl
